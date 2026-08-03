@@ -1,0 +1,32 @@
+context:
+  version: 0.24.1
+  build_number: '0'
+
+package:
+  name: vllm-omni
+  version: ${{ version }}
+
+source:
+  git: https://github.com/vllm-project/vllm-omni.git
+  tag: "v${{ version }}"
+
+build:
+  number: ${{ build_number }}
+  script: ${{ PYTHON }} -m pip install .
+  noarch: python
+
+requirements:
+  host:
+  - python >=3.12,<3.14
+  - setuptools
+  - wheel
+  - setuptools-scm
+  - pip
+  run:
+  - python >=3.12,<3.14
+  - vllm
+
+about:
+  description: "vLLM-Omni is a framework that extends its support for omni-modality model inference and serving."
+  license_file:
+  - LICENSE
